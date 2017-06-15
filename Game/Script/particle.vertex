@@ -1,0 +1,21 @@
+#version 330 core
+
+layout (location = 0) in vec4 vertex_modelspace; // vec_xy for vertex vec_zw for uv
+
+out vec2 texCood;
+out vec4 particleColor;
+
+uniform mat4 projection;
+uniform vec2 offset;
+uniform vec4 color;
+
+
+void main()
+{
+    float scales = 50.0f;
+    texCood = vec2(vertex_modelspace.z,1-vertex_modelspace.w);
+    particleColor = color;
+    
+    gl_Position = projection * vec4((vertex_modelspace.xy)*scales+offset,0.0f,1.0f);
+    
+}

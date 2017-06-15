@@ -1,0 +1,13 @@
+#version 330 core
+
+out vec4 color;
+in vec2 texCood;
+uniform sampler2D texture0;
+
+void main()
+{
+    vec4 texColor = texture(texture0, texCood);
+    if(texColor.a < 0.1)
+        discard;
+    color = texColor;
+}

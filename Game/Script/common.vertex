@@ -1,0 +1,15 @@
+#version 330 core
+
+layout (location = 0) in vec3 vertex_modelspace;
+layout (location = 1) in vec2 vertex_uv;
+
+uniform mat4 model;
+uniform mat4 trans;
+uniform mat4 projection;
+out vec2 texCood;
+
+void main()
+{
+    gl_Position = projection * trans * model * vec4(vertex_modelspace,1.0f);
+    texCood = vec2(vertex_uv.x,1.0f - vertex_uv.y);
+}
